@@ -16,9 +16,9 @@ import androidx.savedstate.SavedStateRegistryOwner
 //    }
 //}
 
-class MyViewModelProovider(val count: Int
-                           , owner: SavedStateRegistryOwner
-                           , defaultArgs: Bundle? = null,
+class MyViewModelProoviderFactory(val count: Int
+                                  , owner: SavedStateRegistryOwner
+                                  , defaultArgs: Bundle? = null,
 ) : AbstractSavedStateViewModelFactory(owner, defaultArgs) {
     override fun <T : ViewModel> create(
         key: String,

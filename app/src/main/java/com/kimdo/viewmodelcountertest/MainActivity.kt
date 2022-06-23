@@ -2,6 +2,7 @@ package com.kimdo.viewmodelcountertest
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.kimdo.viewmodelcountertest.databinding.ActivityMainBinding
 
@@ -13,8 +14,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView( binding.root )
 
-        val factory = MyViewModelProovider( 12 , this )
-        val viewModel: MyViewModel = ViewModelProvider(this, factory )[MyViewModel::class.java]
+        val factory = MyViewModelProoviderFactory( 12 , this )
+        val viewModel: MyViewModel by viewModels(){ factory }
+//        val viewModel: MyViewModel = ViewModelProvider(this, factory )[MyViewModel::class.java]
 
         viewModel.liveCounter.observe(this) { count ->
             binding.txtCounter.text = count.toString()
